@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DIY Genie</title>
+</head>
+<body>
+    <header>
+        <h1>DIY Genie</h1>
+    </header>
+    <main class="content">
+        <section class="login">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <label for="email">Email
+                </label>
+                <input type="text" name="email">
+                <label for="password">Password
+                </label>
+                <%# error_message placeholder - need to fix that bug! %>
+                <input type="password" name="password">
+                <button>Submit</button>
+            </form>
+        </section>
+        <section class="main">
+            <section class="description">
+                <h2>What is DIY Genie?</h2>
+                <p>It's the ability to create wishlists, share each one with a handpicked list of your friends and family, and then have them fulfil your wish competely in secret.</p>
+                <p>They can collaborate, discuss get you exactly what you want. Yet you get the surprise on never knowing what's actually been bought and by who!</p>
+            </section>
+            <section class="sign-up">
+                <h2>Sign Up</h2>
+                <p id="sign-up-password-error"></p>
+                <form action="/signup" method="POST">
+                    <label for="name">Your First Name</label>
+                    <input type="text" name="first_name">
+                    <br>
+                    <label for="email">Email</label>
+                    <input type="text" name="email">
+                    <br>
+                    <label for="password">Password</label>
+                    <input type="password" name="password">
+                    <br>
+                    <label for="password">Please confirm your password</label>
+                    <input type="password" name="password_confirmation">
+                    <br>
+                    <button>Submit</button>
+                </form>
+            </section>
+        </section>
+    </main>
+    <footer>
+        &copy Ralph Shipard 2021
+    </footer>
+</body>
+</html>
