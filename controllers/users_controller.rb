@@ -7,7 +7,3 @@ post '/signup' do
     create_user(first_name, email, password)
     redirect '/lists'
 end
-
-get '/lists' do
-    erb :'/lists/lists'
-end

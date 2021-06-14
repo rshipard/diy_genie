@@ -1,0 +1,66 @@
+<main class="lists-container">
+    <header>
+        <h1>Welcome</h1>
+        <ul>
+            <li>
+                <form action="/lists">
+                    <input type="hidden">
+                    <button>Home</button>
+                </form>
+            </li>
+            <li>
+                <form action="/user">
+                    <input type="hidden">
+                    <button>My Details</button>
+                </form>
+            </li>
+            <li>
+                <form action="/friends">
+                    <input type="hidden">
+                    <button>Friends</button>
+                </form>
+            </li>
+            <li>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button>Logout</button>
+                </form>
+            </li>
+        </ul>
+    </header>
+    <section class="list-description">
+        <p>To get started fulfilling wishes, select a friends list below. <br>No wishes to fulfil? Remind your friend to add you to their wishlists. <br>And while you're waiting, how about making a few wishes of your own?</p>
+    </section>
+    <section class="lists">
+        <div id="my-lists">
+            <h2>My Lists</h2>
+            <form action="/new_list" method="POST">
+                <input type="text" placeholder="New List's name?" name="list_title">
+                <button>Create</button>
+            </form>
+            <div id="my-list-results">
+                <ul>
+                    <% user_lists.each do |list| %>
+                        <li class="user-list">
+                            <a href="./lists/edit?list=<%= list["id"]%>"><%= list["list_title"]%></a>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+        <div id="friends-lists">
+            <h2>Friends Lists</h2>
+            <form action="/search"></form>
+            <input type="text" placeholder="Search Friends">
+            <button>Search</button>
+            <div id="friends-list-results">
+                <a href="">Bob's List One</a> <%# change to loop do list of users lists%>
+                <a href="">Bob's List Two</a> <%# change to loop do list of users lists%>
+                <a href="">Macey's List</a> <%# change to loop do list of users lists%>
+                <a href="">Lloyd's List</a> <%# change to loop do list of users lists%>
+                <a href="">Brooke's List</a> <%# change to loop do list of users lists%>
+                <a href="">Brooke's List</a> <%# change to loop do list of users lists%>
+            </div>
+        </div>
+    </section>
+</main>

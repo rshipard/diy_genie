@@ -17,5 +17,5 @@ require_relative './controllers/sessions_controller'
 require_relative './controllers/lists_controller'
 
 get '/' do
-  erb :'./index'
+  erb :'./index', locals: { error_message: '' }
 end

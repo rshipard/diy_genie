@@ -10,13 +10,13 @@
     <main class="content">
         <section class="login">
             <h2>Login</h2>
+            <h4><%= error_message %></h4>
             <form action="/login" method="POST">
                 <label for="email">Email
                 </label>
                 <input type="text" name="email">
                 <label for="password">Password
                 </label>
-                <%# error_message placeholder - need to fix that bug! %>
                 <input type="password" name="password">
                 <button>Submit</button>
             </form>

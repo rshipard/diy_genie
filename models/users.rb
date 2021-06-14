@@ -22,9 +22,5 @@ def find_user_by_id( id )
     params = [id]
     sql_query = "SELECT * FROM users WHERE id = $1"
     results = run_sql(sql_query, params)
-    if results.to_a.length > 0
-        return results[0]
-    else
-        return nil
-    end
+    return results
 end
