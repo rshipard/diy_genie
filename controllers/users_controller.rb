@@ -5,5 +5,5 @@ post '/signup' do
     password_confirmation = params[:password_confirmation]
 
     create_user(first_name, email, password)
-    redirect '/lists'
+    redirect '/main'
 end

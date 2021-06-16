@@ -1,3 +1,28 @@
-<% list_id = params[:list]%>
 
-<h2><%= list_id %></h2>
+
+<form action="/rename-list" method="_method" value="PUT">
+    <label for="rename-list">
+        Rename List
+        <input type="text" name="list-name">
+    </label>
+
+</form>
+
+
+<%# <form action="/add-gift" method="POST">
+    <h2>Add a gift</h2>
+    <label for="gift_title">Gift
+        <input type="text">
+    </label>
+    <label for="gift_description">Description
+        <input type="text">
+    </label>
+    <label for="quantity">Quantity
+        <input type="number">
+    </label>
+    <label for="size">Size
+        <input type="text">
+    </label>
+    <input type="button" value="Add to my wishlist">
+</form> %>
+

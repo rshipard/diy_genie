@@ -1,0 +1,61 @@
+<main class="lists-container">
+    <header>
+        <h1>Welcome <%= username %></h1>
+        <ul class="no-bullets">
+            <li>
+                <form action="/main" method="GET">
+                    <input type="hidden">
+                    <button>Home</button>
+                </form>
+            </li>
+            <%# <li> #CREATE A EDIT USER PAGE... with another views folder... sigh
+                <form action="/user">
+                    <input type="hidden">
+                    <button>My Details</button>
+                </form>
+            </li> %>
+            <li>
+                <form action="/friends" method="GET">
+                    <input type="hidden">
+                    <button>Friends</button>
+                </form>
+            </li>
+            <li>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button>Logout</button>
+                </form>
+            </li>
+        </ul>
+    </header>
+    <section class="list-description">
+        <p>To get started fulfilling wishes, select a friends list below. <br>No wishes to fulfil? Remind your friend to add you to their wishlists. <br>And while you're waiting, how about making a few wishes of your own?</p>
+    </section>
+    <section class="lists">
+
+        <div id="my-lists">
+            <h2>My Lists</h2>
+            <form action="/new_list" method="POST">
+                <input type="text" placeholder="New List's name?" name="list_title">
+                <button>Create</button>
+            </form>
+            <div id="my-list-results">
+                <ul class="no-bullets">
+                    <% user_lists.each do |list| %>
+                        <li class="user-list">
+                            <a href="./lists/:<%= list["id"]%>/edit"><%= list["list_title"]%></a>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+        <div id="friends-lists">
+            <h2>Friends Lists</h2>
+            <form action="/search"></form>
+            <input type="text" placeholder="Search Friends">
+            <button>Search</button>
+            <div id="friends-list-results">
+            </div>
+        </div>
+    </section>
+</main>

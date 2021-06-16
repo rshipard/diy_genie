@@ -24,3 +24,10 @@ def find_user_by_id( id )
     results = run_sql(sql_query, params)
     return results
 end
+
+def find_username 
+    user_id = session[:user_id]
+    params = [user_id]
+    sql_query = "SELECT first_name FROM users WHERE id = $1;"
+    run_sql(sql_query, params)
+end
