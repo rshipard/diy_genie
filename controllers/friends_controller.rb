@@ -18,3 +18,15 @@ post '/add_friend' do
         redirect '/'
     end
 end
+
+delete '/remove-friend' do
+    if is_logged_in?
+        user_id = :user_id
+        friends_email = params[:friends_email]
+        remove_friend()
+        friends = all_friends_for_user()
+        erb :'friends/edit', locals: {friends: friends}
+    else
+        redirect '/'
+    end
+end

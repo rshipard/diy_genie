@@ -11,3 +11,11 @@ def create_friend()
     sql_query = "INSERT INTO friends (user_id, friends_email) VALUES ($1, $2);"
     results = run_sql(sql_query, params)
 end
+
+def remove_friend()
+    user_id = session[:user_id]
+    friends_email = params[:friends_email]
+    params = [user_id, friends_email]
+    sql_query = "DELETE FROM friends WHERE user_id = $1 AND friends_email = $2;"
+    results = run_sql(sql_query, params)
+end
