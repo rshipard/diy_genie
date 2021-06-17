@@ -1,8 +1,8 @@
 get '/main' do
     if is_logged_in?
         user_lists = all_user_lists()
-        username = find_username()
-        erb :'./main/main', locals: { user_lists: user_lists, username: username}
+        user = current_user()
+        erb :'./main/main', locals: { user_lists: user_lists, user: user}
     else
         redirect '/'
     end
@@ -20,19 +20,19 @@ post '/new_list' do
     end
 end
 
-get '/lists/:list_id/edit' do |list_id|
+get '/lists/:list_id/edit' do |list_id| #reference as a block parameter - whci comes in ORDER, eg each":" in order, not by name
     if is_logged_in?
-        results = all_gifts_in_list()
-        erb :'lists/edit', locals: {results: results}
+        results = all_gifts_in_list(list_id)
+        erb :'lists/edit', locals: {results: results, list_id: list_id}
     else
         redirect '/'
     end
 end
 
-get '/lists/:list_id/delete' do
+get '/lists/:list_id/delete' do 
     if is_logged_in?
-        list_id = :list_id
-        results = all_gifts_in_list()
+        list_id = params[:list_id] # or reference as a params
+        results = all_gifts_in_list(list_id)
         erb :'lists/delete', locals: {results: results}
     else
         redirect '/'

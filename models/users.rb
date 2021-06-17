@@ -22,12 +22,16 @@ def find_user_by_id( id )
     params = [id]
     sql_query = "SELECT * FROM users WHERE id = $1"
     results = run_sql(sql_query, params)
-    return results
+    if results.to_a.length > 0
+        return results[0]
+    else
+        return nil
+    end
 end
 
-def find_username 
-    user_id = session[:user_id]
-    params = [user_id]
-    sql_query = "SELECT first_name FROM users WHERE id = $1;"
-    run_sql(sql_query, params)
-end
+# def find_username 
+#     user_id = session[:user_id]
+#     params = [user_id]
+#     sql_query = "SELECT first_name FROM users WHERE id = $1;"
+#     run_sql(sql_query, params)
+# end

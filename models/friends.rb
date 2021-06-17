@@ -12,9 +12,8 @@ def create_friend()
     results = run_sql(sql_query, params)
 end
 
-def remove_friend()
+def remove_friend(friends_email)
     user_id = session[:user_id]
-    friends_email = params[:friends_email]
     params = [user_id, friends_email]
     sql_query = "DELETE FROM friends WHERE user_id = $1 AND friends_email = $2;"
     results = run_sql(sql_query, params)

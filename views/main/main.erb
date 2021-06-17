@@ -1,6 +1,6 @@
 <main class="lists-container">
     <header>
-        <h1>Welcome <%= username %></h1>
+        <h1>Welcome <%= user['first_name'] %></h1>
         <ul class="no-bullets">
             <li>
                 <form action="/main" method="GET">
@@ -43,7 +43,7 @@
                 <ul class="no-bullets">
                     <% user_lists.each do |list| %>
                         <li class="user-list">
-                            <a href="./lists/:<%= list["id"]%>/edit"><%= list["list_title"]%></a>
+                            <a href="./lists/<%= list["id"]%>/edit"><%= list["list_title"]%></a>
                         </li>
                     <% end %>
                 </ul>

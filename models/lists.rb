@@ -12,7 +12,7 @@ def all_user_lists()
 end
 
 def all_gifts_in_list()
-    params = [list_id]
+    params = [:list_id]
     sql_query = "SELECT * FROM gifts WHERE list_id = $1;"
     results = run_sql(sql_query, params)
 end

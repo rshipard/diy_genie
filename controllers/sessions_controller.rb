@@ -6,9 +6,7 @@ post '/login' do
 
     if user && BCrypt::Password.new(user['password_digest']) == password
         session[:user_id] = user['id']
-        user_lists = all_user_lists()
-        username = find_username()
-        erb :'main/main', locals: { user_lists: user_lists, username: username}
+        redirect '/main'
     else
         erb :index , locals: { error_message: 'Incorrect password or username'}
     end

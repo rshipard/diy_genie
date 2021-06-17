@@ -4,8 +4,8 @@ def create_gift()
     run_sql(sql_query, params)
 end
 
-def all_gifts_in_list()
-    params = [:list_id]
+def all_gifts_in_list(list_id)
+    params = [list_id]
     sql_query = "SELECT * FROM gifts WHERE list_id = $1;"
     run_sql(sql_query, params)
 end

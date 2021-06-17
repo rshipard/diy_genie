@@ -9,7 +9,7 @@
 </form>
 
 
-<%# <form action="/add-gift" method="POST">
+<form action="/add-gift" method="POST">
     <h2>Add a gift</h2>
     <label for="gift_title">Gift
         <input type="text">
@@ -23,6 +23,7 @@
     <label for="size">Size
         <input type="text">
     </label>
+    <input type="hidden" value="<%= list_id %>">
     <input type="button" value="Add to my wishlist">
-</form> %>
+</form>
 
