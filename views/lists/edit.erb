@@ -2,19 +2,11 @@
         <ul class="no-bullets">
             <li>
                 <form action="/main" method="GET">
-                    <input type="hidden">
                     <button>Home</button>
                 </form>
             </li>
-            <%# <li> #CREATE A EDIT USER PAGE... with another views folder... sigh
-                <form action="/user">
-                    <input type="hidden">
-                    <button>My Details</button>
-                </form>
-            </li> %>
             <li>
                 <form action="/friends" method="GET">
-                    <input type="hidden">
                     <button>Friends</button>
                 </form>
             </li>
@@ -27,8 +19,9 @@
         </ul>
 </header>
 
-<form action="/lists/<%= list_details['id']%>" method="POST">
-    <input type="hidden" name="_method" value="PUT" />
+<section class="list-header">
+    <form action="/lists/<%= list_details['id']%>" method="POST">
+    <input type="hidden" name="_method" value="patch" />
     <h2>
         <%= list_details['list_title'] %>
     </h2>
@@ -37,38 +30,54 @@
     </label>
     <input type="text" name="new_list_title">
     <input type="button" value="Rename this List">
-</form>
+    </form>
+</section>
 
+<br>
 
-<form action="list/<%= list_details['id']%>/add-gift" method="POST">
-    <input type="hidden" name="_method" value="PUT">
-    <h2>Add a gift</h2>
-    <label for="gift_title">Gift
-        <input type="text">
-    </label>
-    <label for="gift_description">Description
-        <input type="text">
-    </label>
-    <label for="quantity">Quantity
-        <input type="number">
-    </label>
-    <label for="size">Size
-        <input type="text">
-    </label>
-    <input type="hidden" name="list_id" value="<%= list_details['list_id'] %>">
-    <input type="button" value="Add to my wishlist">
-</form>
+<section class="add-gift">
+    <form action="/lists/<%= list_details['id']%>">
+        <input type="hidden" name="_method" value="PUT">
+        <label for="gift_title">
+            Gift
+            <input type="text" name="gift_title">
+        </label>
+        <label for="gift_description">
+            Decription
+            <input type="text" name="gift_description">
+        </label>
+        <label for="quantity">
+            Quantity
+            <input type="text" name="quantity">
+        </label>
+        <label for="size">
+            Size
+            <input type="text" name="size">
+        </label>
+        <input type="button" value="Add to this Wishlist">
+    </form>
+</section>
 
-<section>
+<br>
+
+<section class="wishlist">
     <h2>I've asked for:</h2>
-    <ul>
+    <ul class="no-bullets">
         <% results.each do |gift|%>
             <li>
-            <%= gift['quantity'] %> <%= gift['gift_title'] %> -  <%= gift['gift_description'] %>, In size: <%= gift['size'] %>
+                <form action="/lists/<%= list_details['id']%>/edit/<%= gift['id']%>" method="POST">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <input type="text" name="quantity" value="<%= gift['quantity'] %>">
+                    <input type="text" name="gift_title" value="<%= gift['gift_title'] %>">
+                    <input type="text" name="gift_description" value="<%= gift['gift_description'] %>">
+                    <input type="text" name="size" value="<%= gift['size'] %>">
+                    <input type="button" value="Update gift">
+                </form>
+                <form action="/lists/<%= list_details['id']%>/delete/" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="button" value="Delete gift">
+                </form>
             </li>
-
-
         <% end%>
-
     </ul>
 </section>

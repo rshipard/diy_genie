@@ -2,6 +2,7 @@ get '/main' do
     if is_logged_in?
         user_lists = all_user_lists()
         user = current_user()
+        friends_lists = friends_lists()
         erb :'./main/main', locals: { user_lists: user_lists, user: user}
     else
         redirect '/'
@@ -30,6 +31,20 @@ get '/lists/:list_id' do |list_id| #reference as a block parameter - which comes
     end
 end
 
+patch '/lists/:id' do |id|
+    if is_logged_in?
+        list_id = id
+        list_title = params[:new_list_title]
+        rename_list(list_id, list_title)
+        results = all_gifts_in_list(list_id)
+        list_details = list_details_by_id(list_id)
+        erb :'lists/edit', locals: {results: results, list_details: list_details, list_id: list_id}
+    else
+        redirect '/'
+    end
+end
+
+
 # get '/lists/:list_id/delete' do 
 #     if is_logged_in?
 #         list_id = params[:list_id] # or reference as a params
@@ -50,17 +65,3 @@ end
 #         redirect '/'
 #     end
 # end
-
-
-put '/lists/:id' do |id|
-    if is_logged_in?
-        list_id = id
-        list_title = params[:new_list_title]
-        rename_list(list_id, list_title)
-        results = all_gifts_in_list(list_id)
-        list_details = list_details_by_id(list_id)
-        erb :'lists/edit', locals: {results: results, list_details: list_details, list_id: list_id}
-    else
-        redirect '/'
-    end
-end

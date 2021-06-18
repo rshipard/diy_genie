@@ -37,14 +37,13 @@
     <button>Add Friend</button>
 </form>
 
-<ul>
+<ul class="no-bullets">
     <% friends.each do |friend| %>
         <li>
-            <%=friend['friends_email']%>
             <form action="/remove-friend" method="POST">
+                <%=friend['friends_email']%>
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="friends_email" value="<%=friend['friends_email']%>">
-                <input type="hidden" name="">
                 <button>Remove Friend</button>
             </form>
         </li>
