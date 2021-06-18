@@ -11,9 +11,25 @@ def all_user_lists()
     run_sql(sql_query, params)
 end
 
+def list_details_by_id(list_id)
+    params = [list_id]
+    sql_query = "SELECT * FROM lists WHERE id = $1;"
+    results = run_sql(sql_query, params)
+    if results.to_a.length > 0
+        return results[0]
+    else
+        return nil
+    end
+end
+
 def all_gifts_in_list()
     params = [:list_id]
     sql_query = "SELECT * FROM gifts WHERE list_id = $1;"
     results = run_sql(sql_query, params)
 end
 
+def rename_list(list_id, list_title)
+    params = [list_id, list_title]
+    sql_query = "UPDATE lists SET list_title = $2 WHERE id = $1;"
+    results = run_sql(sql_query, params)
+end

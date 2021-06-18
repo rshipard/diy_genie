@@ -1,15 +1,47 @@
+<header>
+        <ul class="no-bullets">
+            <li>
+                <form action="/main" method="GET">
+                    <input type="hidden">
+                    <button>Home</button>
+                </form>
+            </li>
+            <%# <li> #CREATE A EDIT USER PAGE... with another views folder... sigh
+                <form action="/user">
+                    <input type="hidden">
+                    <button>My Details</button>
+                </form>
+            </li> %>
+            <li>
+                <form action="/friends" method="GET">
+                    <input type="hidden">
+                    <button>Friends</button>
+                </form>
+            </li>
+            <li>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button>Logout</button>
+                </form>
+            </li>
+        </ul>
+</header>
 
-
-<form action="/rename-list" method="_method" value="PUT">
+<form action="/lists/<%= list_details['id']%>" method="POST">
+    <input type="hidden" name="_method" value="PUT" />
+    <h2>
+        <%= list_details['list_title'] %>
+    </h2>
     <label for="rename-list">
         Rename List
-        <input type="text" name="list-name">
     </label>
-
+    <input type="text" name="new_list_title">
+    <input type="button" value="Rename this List">
 </form>
 
 
-<form action="/add-gift" method="POST">
+<form action="list/<%= list_details['id']%>/add-gift" method="POST">
+    <input type="hidden" name="_method" value="PUT">
     <h2>Add a gift</h2>
     <label for="gift_title">Gift
         <input type="text">
@@ -23,7 +55,20 @@
     <label for="size">Size
         <input type="text">
     </label>
-    <input type="hidden" value="<%= list_id %>">
+    <input type="hidden" name="list_id" value="<%= list_details['list_id'] %>">
     <input type="button" value="Add to my wishlist">
 </form>
 
+<section>
+    <h2>I've asked for:</h2>
+    <ul>
+        <% results.each do |gift|%>
+            <li>
+            <%= gift['quantity'] %> <%= gift['gift_title'] %> -  <%= gift['gift_description'] %>, In size: <%= gift['size'] %>
+            </li>
+
+
+        <% end%>
+
+    </ul>
+</section>
