@@ -12,7 +12,7 @@ end
 
 def delete_gift(gift_id)
     params = [gift_id]
-    sql_query = "DELETE FROM gifts WHERE id = $1;"
+    sql_query = "DELETE FROM gifts WHERE gift_id = $1;"
     results = run_sql(sql_query, params)
 end
 

@@ -3,17 +3,18 @@ get '/main' do
         user_lists = all_user_lists()
         user = current_user()
         user_email = user["email"]
-        friends_list = friends_list(user_email)
-        # puts friends[0] #delete when done testing
+        all_friends = friends_list(user_email)
+        # puts all_friends[0] #delete when done testing
+        # puts all_friends[0]["user_id"]
         # all_friends[0].each do |friend|
         #     # get friend id - to search for lists by that id
-        #     friends_id = friend["user_id"]
-        #     puts friends_id
+        #     friend_id = friend["user_id"]
+        #     puts friend_id
         #     friends_list = find_list_by_owner_id(owner_id)
         #     friends_list_title = friends_list["list_title"]
         #     puts friends_list_title
         # end
-        erb :'./main/main', locals: { user_lists: user_lists, user: user, friends_list: friends_list}
+        erb :'./main/main', locals: { user_lists: user_lists, user: user, all_friends: all_friends}
     else
         redirect '/'
     end
@@ -53,25 +54,3 @@ put '/lists/:id' do |id|
         redirect '/'
     end
 end
-
-
-# get '/lists/:list_id/delete' do 
-#     if is_logged_in?
-#         list_id = params[:list_id] # or reference as a params
-#         results = all_gifts_in_list(list_id)
-#         erb :'lists/delete', locals: {results: results}
-#     else
-#         redirect '/'
-#     end
-# end
-
-# delete '/lists/:list_id/delete' do
-#     if is_logged_in?
-#         list_id = :list_id
-#         delete_list() #needs to be created and linked
-#         user_lists = all_user_lists()
-#         erb :'./main/main', locals: { user_lists: user_lists}
-#     else
-#         redirect '/'
-#     end
-# end

@@ -89,8 +89,9 @@
                     <br>                 
                     <input type="submit" value="Update gift">
                 </form>
-                <form action="/lists/<%= list_details['id']%>/delete/" method="POST">
+                <form action="/lists/<%= list_details['id']%>/delete" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="gift_id" value="<%= gift['gift_id']%>">
                     <input type="submit" value="Delete gift">
                 </form>
             </li>

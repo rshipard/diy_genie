@@ -25,8 +25,9 @@ patch '/lists/:list_id/edit' do
     redirect '/lists/' + list_id
 end
 
-delete '/lists/:list_id/delete/:gift_id' do
-    gift_id = #{gift_id}
+delete '/lists/:list_id/delete' do
+    list_id = params[:list_id]
+    gift_id = params[:gift_id]
     delete_gift(gift_id)
-    redirect '/lists/:list_id'
+    redirect '/lists/' + list_id
 end
