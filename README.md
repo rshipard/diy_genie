@@ -20,11 +20,18 @@ I started with wireframing for the layout, which also doubled as a rough sitemap
 
 With the basics done, I started with a login page, as trying everything to the user id was key.
 
-## Unsolved Problems:
+## Current functionality:
 
- - Adding gifts to lists at the front end
- - Removing gifts from the wishlist at the front end
- - Updating gifts withing a wishlist at the front end
- - Ability to access your friends wishlists
+ - You can create user
+ - Login
+ - Create lists and modify them
+ - Add friends via-email
+ - View you friends lists
+
+## Future Features:
+
  - Ability to mark items off your friends lists as purchased
+ - Remove list altogether
+ - Ability for others to collaborate on a gift - sharing how much they are willing to contribute
+ - Much better CSS/Styling
 
