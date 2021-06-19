@@ -2,7 +2,7 @@ get '/main' do
     if is_logged_in?
         user_lists = all_user_lists()
         user = current_user()
-        friends_lists = friends_lists()
+        # friends_lists = friends_lists()
         erb :'./main/main', locals: { user_lists: user_lists, user: user}
     else
         redirect '/'
@@ -31,7 +31,7 @@ get '/lists/:list_id' do |list_id| #reference as a block parameter - which comes
     end
 end
 
-patch '/lists/:id' do |id|
+put '/lists/:id' do |id|
     if is_logged_in?
         list_id = id
         list_title = params[:new_list_title]
