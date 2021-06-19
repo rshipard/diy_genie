@@ -47,7 +47,11 @@
             <h2>Friends Lists</h2>
             <div id="friends-list-results">
                 <ul>
-                    <%# OUTPUT OF SEARCH REUSLTS FOR OTHERS LISTS %>
+                    <% all_friends_lists.each do |list| %>
+                        <li class="user-list">
+                            <a href="./lists/<%= list["id"]%>/show"><%= list["list_title"]%></a>
+                        </li>
+                    <% end %>
                 </ul>
 
             </div>

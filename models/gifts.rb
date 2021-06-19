@@ -21,3 +21,9 @@ def update_gift(gift_id, gift_title, gift_description, quantity, size)
     sql_query = "UPDATE gifts SET gift_title = $2, gift_description = $3, quantity = $4, size = $5 WHERE gift_id = $1;"
     results = run_sql(sql_query, params)
 end
+
+def grant_wish(gift_id)
+    params = [gift_id]
+    sql_query = "UPDATE gifts SET purchased = true WHERE gift_id = $1;"
+    results = run_sql(sql_query, params)
+end

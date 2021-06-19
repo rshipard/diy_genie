@@ -4,17 +4,14 @@ get '/main' do
         user = current_user()
         user_email = user["email"]
         all_friends = friends_list(user_email)
-        # puts all_friends[0] #delete when done testing
-        # puts all_friends[0]["user_id"]
-        # all_friends[0].each do |friend|
-        #     # get friend id - to search for lists by that id
-        #     friend_id = friend["user_id"]
-        #     puts friend_id
-        #     friends_list = find_list_by_owner_id(owner_id)
-        #     friends_list_title = friends_list["list_title"]
-        #     puts friends_list_title
-        # end
-        erb :'./main/main', locals: { user_lists: user_lists, user: user, all_friends: all_friends}
+        all_friends_lists = []
+        all_friends.each do |friend|
+            # get friend id - to search for lists by that id
+            friend_id = friend["user_id"]
+            friends_lists = find_list_by_owner_id(friend_id)
+            all_friends_lists.concat(friends_lists.to_a)
+        end
+        erb :'./main/main', locals: { user_lists: user_lists, user: user, all_friends: all_friends, all_friends_lists: all_friends_lists}
     else
         redirect '/'
     end
@@ -53,4 +50,11 @@ put '/lists/:id' do |id|
     else
         redirect '/'
     end
+end
+
+get '/lists/:list_id/show' do
+    list_id = params[:list_id]
+    results = all_gifts_in_list(list_id)
+    list_details = list_details_by_id(list_id)
+    erb :'lists/show', locals: {results: results, list_details: list_details}
 end

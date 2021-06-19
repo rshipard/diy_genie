@@ -1,3 +1,39 @@
-<h2>individual list show page</h2>
+<header>
+        <ul class="no-bullets">
+            <li>
+                <form action="/main" method="GET">
+                    <button>Home</button>
+                </form>
+            </li>
+            <li>
+                <form action="/friends" method="GET">
+                    <button>Friends</button>
+                </form>
+            </li>
+            <li>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button>Logout</button>
+                </form>
+            </li>
+        </ul>
+</header>
 
-for your friinds to see - not the owner!
+<form action="/grant-wish" method="POST">
+    <ul class="no-bullets">
+        <h2>They would like:</h2>
+        <% results.each do |gift|%>
+            <li>
+                <form action="/grant-wish" method="POST">
+                    <%= gift['quantity'] %> of 
+                    <%= gift['gift_title'] %>. Preferably 
+                    <%= gift['gift_description'] %>, in this size  
+                    <%= gift['size'] %>
+                    <input type="hidden" name="gift_id" value="<%= gift['gift_id']%>">
+                    <input type="hidden" name="list_id" value="<%= list_details['list_id']%>">
+                    <input type="submit" value="Grant Wish">
+                </form>
+            </li>
+        <% end%>
+    </ul>
+</form>

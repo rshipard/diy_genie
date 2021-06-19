@@ -31,3 +31,10 @@ delete '/lists/:list_id/delete' do
     delete_gift(gift_id)
     redirect '/lists/' + list_id
 end
+
+post '/grant-wish' do
+    list_id = params['list_id']
+    gift_id = params['gift_id']
+    grant_wish(gift_id)
+    redirect '/lists/' + list_id + '/show'
+end
