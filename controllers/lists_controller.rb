@@ -2,8 +2,18 @@ get '/main' do
     if is_logged_in?
         user_lists = all_user_lists()
         user = current_user()
-        # friends_lists = friends_lists()
-        erb :'./main/main', locals: { user_lists: user_lists, user: user}
+        user_email = user["email"]
+        friends_list = friends_list(user_email)
+        # puts friends[0] #delete when done testing
+        # all_friends[0].each do |friend|
+        #     # get friend id - to search for lists by that id
+        #     friends_id = friend["user_id"]
+        #     puts friends_id
+        #     friends_list = find_list_by_owner_id(owner_id)
+        #     friends_list_title = friends_list["list_title"]
+        #     puts friends_list_title
+        # end
+        erb :'./main/main', locals: { user_lists: user_lists, user: user, friends_list: friends_list}
     else
         redirect '/'
     end

@@ -3,6 +3,5 @@ def run_sql(sql_query, params = [])
     connection.prepare("sql", sql_query)
     results = connection.exec_prepared("sql", params)
     connection.close
-  
     return results
 end

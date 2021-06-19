@@ -18,3 +18,9 @@ def remove_friend(friends_email)
     sql_query = "DELETE FROM friends WHERE user_id = $1 AND friends_email = $2;"
     results = run_sql(sql_query, params)
 end
+
+def friends_list(user_email)
+    params = [user_email]
+    sql_query = "SELECT * FROM friends WHERE friends_email = $1"
+    results = run_sql(sql_query, params)
+end

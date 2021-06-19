@@ -16,3 +16,11 @@ delete '/logout' do
     session[:user_id] = nil
     redirect '/'
 end
+
+# Params viewer for testing
+post '/test' do
+    "#{params}"
+end
+
+# Params form action code to Copy/Paste for debugging 
+# <form action="/test" method="POST">

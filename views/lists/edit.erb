@@ -21,40 +21,42 @@
 
 <section class="list-header">
     <form action="/lists/<%= list_details['id']%>" method="POST">
-    <input type="hidden" name="_method" value="put" />
-    <h2>
-        <%= list_details['list_title'] %>
-    </h2>
-    <label for="rename-list">
-        Rename List
-    </label>
-    <input type="text" name="new_list_title">
-    <input type="button" value="Rename this List">
+        <input type="hidden" name="_method" value="put" />
+        <input type="hidden" name="list_id" value="<%= list_details['id']%>">
+        <h2>
+            <%= list_details['list_title'] %>
+        </h2>
+        <label for="rename-list">
+            Rename List
+        </label>
+        <input type="text" name="new_list_title">
+        <input type="submit" value="Rename this List">
     </form>
 </section>
 
 <br>
 
 <section class="add-gift">
-    <form action="/lists/<%= list_details['id']%>">
-        <input type="hidden" name="_method" value="PUT">
+    <form action="/lists/<%= list_details['id']%>/add-gift" method="POST">
+       <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="list_id" value="<%= list_details['id']%>">
+        <label for="quantity">
+            I wish I had...
+            <input type="text" name="quantity">
+        </label>
         <label for="gift_title">
-            Gift
+            of
             <input type="text" name="gift_title">
         </label>
         <label for="gift_description">
-            Decription
+            like
             <input type="text" name="gift_description">
         </label>
-        <label for="quantity">
-            Quantity
-            <input type="text" name="quantity">
-        </label>
         <label for="size">
-            Size
+            as big as
             <input type="text" name="size">
         </label>
-        <input type="button" value="Add to this Wishlist">
+        <input type="submit" value="Add to this Wishlist">
     </form>
 </section>
 
@@ -65,17 +67,31 @@
     <ul class="no-bullets">
         <% results.each do |gift|%>
             <li>
-                <form action="/lists/<%= list_details['id']%>/edit/<%= gift['id']%>" method="POST">
+                <form action="/lists/<%= list_details['id']%>/edit" method="POST">
                     <input type="hidden" name="_method" value="PATCH">
-                    <input type="text" name="quantity" value="<%= gift['quantity'] %>">
-                    <input type="text" name="gift_title" value="<%= gift['gift_title'] %>">
-                    <input type="text" name="gift_description" value="<%= gift['gift_description'] %>">
-                    <input type="text" name="size" value="<%= gift['size'] %>">
-                    <input type="button" value="Update gift">
+                    <input type="hidden" name="gift_id" value="<%= gift['gift_id']%>">
+                    <label for="quantity">
+                        Quantity
+                    </label>
+                        <input type="text" name="quantity" value="<%= gift['quantity'] %>">
+                    <label for="gift_title">
+                        Gift
+                    </label>
+                        <input type="text" name="gift_title" value="<%= gift['gift_title'] %>">
+                    <label for="gift_description">
+                        Description
+                    </label>
+                        <input type="text" name="gift_description" value="<%= gift['gift_description'] %>">
+                    <label for="size">
+                        Size
+                    </label>
+                        <input type="text" name="size" value="<%= gift['size'] %>">
+                    <br>                 
+                    <input type="submit" value="Update gift">
                 </form>
                 <form action="/lists/<%= list_details['id']%>/delete/" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="button" value="Delete gift">
+                    <input type="submit" value="Delete gift">
                 </form>
             </li>
         <% end%>

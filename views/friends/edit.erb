@@ -34,7 +34,7 @@
     <label for="friends_email">Please enter your friends e-mail to add them!
         <input type="text" placeholder="Your friends e-mail?" name="friends_email">
     </label>
-    <button>Add Friend</button>
+    <input type="submit" value="Add Friend">
 </form>
 
 <ul class="no-bullets">
@@ -44,7 +44,7 @@
                 <%=friend['friends_email']%>
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="friends_email" value="<%=friend['friends_email']%>">
-                <button>Remove Friend</button>
+                <input type="submit" value="Remove Friend">
             </form>
         </li>
     <% end %>

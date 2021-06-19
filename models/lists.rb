@@ -33,3 +33,9 @@ def rename_list(list_id, list_title)
     sql_query = "UPDATE lists SET list_title = $2 WHERE id = $1;"
     results = run_sql(sql_query, params)
 end
+
+def find_list_by_owner_id(owner_id)
+    params = [owner_id]
+    sql_query = "SELECT * FROM lists WHERE list_owner = $1;"
+    results = run_sql(sql_query, params)
+end
