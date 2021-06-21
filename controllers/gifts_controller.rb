@@ -37,4 +37,5 @@ post '/grant-wish' do
     gift_id = params['gift_id']
     grant_wish(gift_id)
     redirect '/lists/' + list_id + '/show'
+    puts "*** wish granted ***"
 end

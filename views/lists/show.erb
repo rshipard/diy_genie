@@ -23,17 +23,29 @@
     <ul class="no-bullets">
         <h2>They would like:</h2>
         <% results.each do |gift|%>
-            <li>
-                <form action="/grant-wish" method="POST">
+            <% if gift['purchased'] == 'f'%>
+                <li>
+                    <form action="/grant-wish" method="POST">
+                        <%= gift['quantity'] %> of 
+                        <%= gift['gift_title'] %>. Preferably 
+                        <%= gift['gift_description'] %>, in this size  
+                        <%= gift['size'] %>
+                        <input type="hidden" name="gift_id" value="<%= gift['gift_id']%>">
+                        <input type="hidden" name="list_id" value="<%= gift['list_id']%>">
+                        <input type="submit" value="Grant Wish">
+                    </form>
+                </li>
+            <% else %>
+                <li>
                     <%= gift['quantity'] %> of 
                     <%= gift['gift_title'] %>. Preferably 
                     <%= gift['gift_description'] %>, in this size  
                     <%= gift['size'] %>
                     <input type="hidden" name="gift_id" value="<%= gift['gift_id']%>">
-                    <input type="hidden" name="list_id" value="<%= list_details['list_id']%>">
-                    <input type="submit" value="Grant Wish">
-                </form>
-            </li>
+                    <input type="hidden" name="list_id" value="<%= gift['list_id']%>">
+                    <input type="button" value="Wish Granted">
+                </li>
+            <% end %>
         <% end%>
     </ul>
 </form>
