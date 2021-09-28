@@ -22,11 +22,11 @@ With the basics done, I started with a login page, as trying everything to the u
 
 ## Current functionality:
 
- - You can create user
+ - You can create a user
  - Login
  - Create lists and modify them
- - Add friends via-email
- - View you friends lists
+ - Add friends via their email
+ - View your friends lists
 
 ## Future Features:
 
